@@ -1,0 +1,2 @@
+
+export type CitiesList = string[];

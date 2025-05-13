@@ -5,6 +5,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withInterceptorsFromDi()) // 👈 Isso registra o HttpClient corretamente!
+    provideHttpClient(withInterceptorsFromDi()) 
   ]
 });
