@@ -1,8 +1,9 @@
 import { AddressTypeEnum } from "../enums/address-type.enum";
 import { MaritalStatusEnum } from "../enums/marital-status.enum";
 import { PhoneTypeEnum } from "../enums/phone-type.enum";
+import { IUser } from "../interfaces/user/user.interface";
 
-export const USERS_LIST = [
+export const USERS_LIST: IUser[] = [
     {
       name: 'Fulano',
       email: 'fulano@hotmail.com',
