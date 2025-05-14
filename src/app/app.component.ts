@@ -7,16 +7,19 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UsersListResponse } from './types/users-list';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GeneralInformationsComponent } from "./components/general-informations/general-informations.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [UsersListComponent, CommonModule],
+  imports: [UsersListComponent, CommonModule, MatTabsModule, GeneralInformationsComponent],
 })
 export class AppComponent implements OnInit {
   usersList: UsersListResponse = [];
+  currentTabIndex: number = 0;
 
   constructor(
     private readonly _countrieService: CountriesService,
@@ -25,7 +28,7 @@ export class AppComponent implements OnInit {
     private readonly _usersService: UsersService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._countrieService.getCountries().subscribe((countriesResponse) => {
       console.log('countriesResponse', countriesResponse);
     });
@@ -40,8 +43,11 @@ export class AppComponent implements OnInit {
         console.log('citiesResponse', citiesResponse);
       });
 
-    this._usersService.getUsers().pipe(take(1)).subscribe((usersListResponse) => {
-      this.usersList = usersListResponse;
-    });
+    this._usersService
+      .getUsers()
+      .pipe(take(1))
+      .subscribe((usersListResponse) => {
+        this.usersList = usersListResponse;
+      });
   }
 }
