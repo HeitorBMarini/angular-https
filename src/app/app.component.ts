@@ -3,19 +3,26 @@ import { CountriesService } from './services/countries.service';
 import { StatesService } from './services/states.service';
 import { CitiesService } from './services/cities.service';
 import { UsersService } from './services/users.service';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { UsersListResponse } from './types/users-list';
+import { take } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  imports: [UsersListComponent, CommonModule],
 })
 export class AppComponent implements OnInit {
+  usersList: UsersListResponse = [];
+
   constructor(
     private readonly _countrieService: CountriesService,
     private readonly _statesService: StatesService,
     private readonly _citiesService: CitiesService,
-   private readonly _usersService: UsersService,
+    private readonly _usersService: UsersService
   ) {}
 
   ngOnInit() {
@@ -27,12 +34,14 @@ export class AppComponent implements OnInit {
       console.log('statesResponse', statesResponse);
     });
 
-    this._citiesService.getCities('Brazil', 'São Paulo').subscribe((citiesResponse) => {
-      console.log('citiesResponse', citiesResponse);
-    });
+    this._citiesService
+      .getCities('Brazil', 'São Paulo')
+      .subscribe((citiesResponse) => {
+        console.log('citiesResponse', citiesResponse);
+      });
 
-    this._usersService.getUsers().subscribe((usersResponse) => {
-      console.log('usersResponse', usersResponse);
+    this._usersService.getUsers().pipe(take(1)).subscribe((usersListResponse) => {
+      this.usersList = usersListResponse;
     });
   }
 }
