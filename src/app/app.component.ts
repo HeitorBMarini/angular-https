@@ -11,6 +11,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GeneralInformationsComponent } from "./components/general-informations/general-informations.component";
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { ContactInformationsComponent } from "./components/contact-informations/contact-informations.component";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -19,7 +20,7 @@ registerLocaleData(localePt, 'pt-BR');
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [UsersListComponent, CommonModule, MatTabsModule, GeneralInformationsComponent],
+  imports: [UsersListComponent, CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent],
 })
 export class AppComponent implements OnInit {
   usersList: UsersListResponse = [];
