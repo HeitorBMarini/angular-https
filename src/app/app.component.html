@@ -5,7 +5,7 @@
 
       <mat-tab-group [(selectedIndex)]="currentTabIndex">
         <mat-tab label="Geral">
-          <app-general-informations></app-general-informations>
+          <app-general-informations [user]="usersList[0]"></app-general-informations>
         </mat-tab>
         <mat-tab label="Second"> Content 2 </mat-tab>
         <mat-tab label="Third"> Content 3 </mat-tab>
