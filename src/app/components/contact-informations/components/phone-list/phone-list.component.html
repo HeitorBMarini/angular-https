@@ -1,0 +1,9 @@
+<div class="p-4 grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4">
+  <ng-container *ngIf="userPhoneList?.length">
+    <app-user-info-item
+      *ngFor="let phone of userPhoneList"
+      [text]="phone.number"
+      [title]="'Telefone ' + phone.type">
+    </app-user-info-item>
+  </ng-container>
+</div>

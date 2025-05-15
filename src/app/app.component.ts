@@ -8,10 +8,12 @@ import { UsersListResponse } from './types/users-list';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { GeneralInformationsComponent } from "./components/general-informations/general-informations.component";
+import { GeneralInformationsComponent } from './components/general-informations/general-informations.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { ContactInformationsComponent } from "./components/contact-informations/contact-informations.component";
+import { ContactInformationsComponent } from './components/contact-informations/contact-informations.component';
+import { PhoneList } from './types/phone-list';
+import { PhoneListComponent } from './components/contact-informations/components/phone-list/phone-list.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -20,7 +22,14 @@ registerLocaleData(localePt, 'pt-BR');
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [UsersListComponent, CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent],
+  imports: [
+    UsersListComponent,
+    CommonModule,
+    MatTabsModule,
+    GeneralInformationsComponent,
+    ContactInformationsComponent,
+    PhoneListComponent
+  ],
 })
 export class AppComponent implements OnInit {
   usersList: UsersListResponse = [];
