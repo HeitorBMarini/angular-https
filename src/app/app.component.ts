@@ -9,6 +9,10 @@ import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GeneralInformationsComponent } from "./components/general-informations/general-informations.component";
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @Component({
   selector: 'app-root',
