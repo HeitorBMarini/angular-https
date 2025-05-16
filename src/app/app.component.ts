@@ -12,9 +12,9 @@ import { GeneralInformationsComponent } from './components/general-informations/
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ContactInformationsComponent } from './components/contact-informations/contact-informations.component';
-import { PhoneList } from './types/phone-list';
 import { PhoneListComponent } from './components/contact-informations/components/phone-list/phone-list.component';
-import { DependentsListComponent } from "./components/dependents-list/dependents-list.component";
+import { DependentsListComponent } from './components/dependents-list/dependents-list.component';
+import { IUser } from './interfaces/user/user.interface';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -30,10 +30,13 @@ registerLocaleData(localePt, 'pt-BR');
     GeneralInformationsComponent,
     ContactInformationsComponent,
     PhoneListComponent,
-    DependentsListComponent
-],
+    DependentsListComponent,
+  ],
 })
 export class AppComponent implements OnInit {
+  userSelectedIndex: number | undefined;
+  userSelected: IUser = {} as IUser;
+
   usersList: UsersListResponse = [];
   currentTabIndex: number = 0;
 
@@ -65,5 +68,15 @@ export class AppComponent implements OnInit {
       .subscribe((usersListResponse) => {
         this.usersList = usersListResponse;
       });
+  }
+
+  onUserSelected(userIndex: number) {
+    const userFound = this.usersList[userIndex];
+
+    if (userFound) {
+      this.userSelectedIndex = userIndex;
+      this.userSelected = structuredClone(userFound);
+      this.currentTabIndex = 0;
+    }
   }
 }
