@@ -10,7 +10,7 @@
      <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4 p-4">
     <app-user-info-item title="Nome" [text]="dependent.name"></app-user-info-item>
     <app-user-info-item title="Idade" [text]="dependent.age.toString()"></app-user-info-item>
-    <app-user-info-item title="Documento" [text]="dependent.document.toString()"></app-user-info-item>
+    <app-user-info-item title="Documento" [text]="dependent.document | cpf : true"> </app-user-info-item>
      </div>
      <hr class="sm:hidden block">
     </div>
