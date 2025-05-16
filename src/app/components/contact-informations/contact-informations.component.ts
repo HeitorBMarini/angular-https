@@ -4,10 +4,11 @@ import { UserInfoItemComponent } from "../user-info-item/user-info-item.componen
 import { PhoneListComponent } from "./components/phone-list/phone-list.component";
 import { IUser } from '../../interfaces/user/user.interface';
 import { CommonModule } from '@angular/common';
+import { AddressListComponent } from "./components/address-list/address-list.component";
 
 @Component({
   selector: 'app-contact-informations',
-  imports: [GeneralInformationsComponent, UserInfoItemComponent, PhoneListComponent, CommonModule],
+  imports: [GeneralInformationsComponent, UserInfoItemComponent, PhoneListComponent, CommonModule, AddressListComponent],
   templateUrl: './contact-informations.component.html',
   styleUrl: './contact-informations.component.css'
 })
