@@ -14,6 +14,7 @@ import { registerLocaleData } from '@angular/common';
 import { ContactInformationsComponent } from './components/contact-informations/contact-informations.component';
 import { PhoneList } from './types/phone-list';
 import { PhoneListComponent } from './components/contact-informations/components/phone-list/phone-list.component';
+import { DependentsListComponent } from "./components/dependents-list/dependents-list.component";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -28,8 +29,9 @@ registerLocaleData(localePt, 'pt-BR');
     MatTabsModule,
     GeneralInformationsComponent,
     ContactInformationsComponent,
-    PhoneListComponent
-  ],
+    PhoneListComponent,
+    DependentsListComponent
+],
 })
 export class AppComponent implements OnInit {
   usersList: UsersListResponse = [];
