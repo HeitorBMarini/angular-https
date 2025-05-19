@@ -6,10 +6,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GeneralInformationsComponent } from "../general-informations/general-informations.component";
 import { ContactInformationsComponent } from "../contact-informations/contact-informations.component";
 import { DependentsListComponent } from "../dependents-list/dependents-list.component";
+import { GeneralInformationsEditComponent } from "../general-informations-edit/general-informations-edit.component";
 
 @Component({
   selector: 'app-user-infomations-container',
-  imports: [CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent, DependentsListComponent],
+  imports: [CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent, DependentsListComponent, GeneralInformationsEditComponent],
   templateUrl: './user-infomations-container.component.html',
   styleUrl: './user-infomations-container.component.css'
 })

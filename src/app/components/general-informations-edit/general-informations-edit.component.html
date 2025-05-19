@@ -1,0 +1,66 @@
+<div class="grid p-4 gap-4">
+  <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4">
+    <mat-form-field class="w-full">
+      <mat-label>Nome:</mat-label>
+      <input matInput placeholder="Heitor" value="Heitor" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Email:</mat-label>
+      <input matInput placeholder="heitor@gmail.com" value="heitor@gmail.com" />
+    </mat-form-field>
+  </div>
+  <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-4">
+    <mat-form-field class="w-full">
+      <mat-label>País:</mat-label>
+      <input
+        type="text"
+        placeholder="Selecione"
+        matInput
+        [matAutocomplete]="autoCountry"
+      />
+      <mat-autocomplete #autoCountry="matAutocomplete">
+        <mat-option *ngFor="let op of []">{{ "" }}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Estado:</mat-label>
+      <input
+        type="text"
+        placeholder="Selecione um Estado"
+        matInput
+        [matAutocomplete]="autoState"
+      />
+      <mat-autocomplete #autoState="matAutocomplete">
+        <mat-option *ngFor="let op of []">{{ "" }}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="grid lg:grid-cols-3 md:grid-cols-3 gap-4">
+    <div class="w-full">
+      <div class="text-lg">Estado Cívil:</div>
+      <mat-radio-group
+        class="flex flex-col gap-1 lg:flex-row md:flex-row sm:flex-row sm:justify-between"
+      >
+        <mat-radio-button value="1">Solteiro</mat-radio-button>
+        <mat-radio-button value="2">Casado</mat-radio-button>
+        <mat-radio-button value="3">Divorciado</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field class="w-full pt-5">
+      <mat-label>Renda Mensal:</mat-label>
+      <input matInput placeholder="R$ 5000,00" value="R$ 5000,00" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data de Nascimento:</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
