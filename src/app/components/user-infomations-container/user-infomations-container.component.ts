@@ -7,10 +7,11 @@ import { GeneralInformationsComponent } from "../general-informations/general-in
 import { ContactInformationsComponent } from "../contact-informations/contact-informations.component";
 import { DependentsListComponent } from "../dependents-list/dependents-list.component";
 import { GeneralInformationsEditComponent } from "../general-informations-edit/general-informations-edit.component";
+import { ContactInformationsEditComponent } from "../contact-informations-edit/contact-informations-edit.component";
 
 @Component({
   selector: 'app-user-infomations-container',
-  imports: [CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent, DependentsListComponent, GeneralInformationsEditComponent],
+  imports: [CommonModule, MatTabsModule, GeneralInformationsComponent, ContactInformationsComponent, DependentsListComponent, GeneralInformationsEditComponent, ContactInformationsEditComponent],
   templateUrl: './user-infomations-container.component.html',
   styleUrl: './user-infomations-container.component.css'
 })
