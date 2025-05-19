@@ -15,6 +15,7 @@ import { ContactInformationsComponent } from './components/contact-informations/
 import { PhoneListComponent } from './components/contact-informations/components/phone-list/phone-list.component';
 import { DependentsListComponent } from './components/dependents-list/dependents-list.component';
 import { IUser } from './interfaces/user/user.interface';
+import { ButtonsContainerComponent } from "./components/buttons-container/buttons-container.component";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -31,9 +32,13 @@ registerLocaleData(localePt, 'pt-BR');
     ContactInformationsComponent,
     PhoneListComponent,
     DependentsListComponent,
-  ],
+    ButtonsContainerComponent
+],
 })
 export class AppComponent implements OnInit {
+
+isInEditMode: boolean = false;
+
   userSelectedIndex: number | undefined;
   userSelected: IUser = {} as IUser;
 
@@ -79,4 +84,13 @@ export class AppComponent implements OnInit {
       this.currentTabIndex = 0;
     }
   }
+
+  
+onCancelButton() {
+  this.isInEditMode = false;
+}
+onEditButton() {
+  this.isInEditMode = true;
+  
+}
 }
