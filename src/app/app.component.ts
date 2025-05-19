@@ -16,6 +16,7 @@ import { PhoneListComponent } from './components/contact-informations/components
 import { DependentsListComponent } from './components/dependents-list/dependents-list.component';
 import { IUser } from './interfaces/user/user.interface';
 import { ButtonsContainerComponent } from "./components/buttons-container/buttons-container.component";
+import { UserInfomationsContainerComponent } from "./components/user-infomations-container/user-infomations-container.component";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -32,7 +33,8 @@ registerLocaleData(localePt, 'pt-BR');
     ContactInformationsComponent,
     PhoneListComponent,
     DependentsListComponent,
-    ButtonsContainerComponent
+    ButtonsContainerComponent,
+    UserInfomationsContainerComponent
 ],
 })
 export class AppComponent implements OnInit {
@@ -43,7 +45,6 @@ isInEditMode: boolean = false;
   userSelected: IUser = {} as IUser;
 
   usersList: UsersListResponse = [];
-  currentTabIndex: number = 0;
 
   constructor(
     private readonly _countrieService: CountriesService,
@@ -81,7 +82,6 @@ isInEditMode: boolean = false;
     if (userFound) {
       this.userSelectedIndex = userIndex;
       this.userSelected = structuredClone(userFound);
-      this.currentTabIndex = 0;
     }
   }
 

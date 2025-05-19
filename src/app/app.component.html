@@ -2,21 +2,18 @@
   <div class="p-5 rounded-xl bg-white">
     <div>
       <app-users-list [userList]="usersList" (onUserSelected)="onUserSelected($event)"></app-users-list>
+
       <app-buttons-container
       *ngIf="userSelectedIndex !== undefined"
       [isInEditMode]="isInEditMode"
       (onEditButton)="onEditButton()"
       (onCancelButton)="onCancelButton()" > </app-buttons-container>
-      <mat-tab-group [(selectedIndex)]="currentTabIndex" *ngIf="userSelectedIndex !== undefined">
-        <mat-tab label="Geral">
-          <app-general-informations [user]="userSelected"></app-general-informations>
-        </mat-tab>
-        <mat-tab label="Contato"> <app-contact-informations [user]="userSelected"> </app-contact-informations>
-        </mat-tab>
-        <mat-tab label="Dependentes">
-          <app-dependents-list [dependentsList]="userSelected.dependentsList"></app-dependents-list>
-           </mat-tab>
-      </mat-tab-group>
+
+      <app-user-infomations-container 
+      *ngIf="userSelectedIndex !== undefined"
+      [isInEditMode]="isInEditMode"
+       [userSelected]="userSelected"  ></app-user-infomations-container>
+      
     </div>
   </div>
 </div>
