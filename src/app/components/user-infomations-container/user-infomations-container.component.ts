@@ -9,6 +9,7 @@ import { DependentsListComponent } from "../dependents-list/dependents-list.comp
 import { GeneralInformationsEditComponent } from "../general-informations-edit/general-informations-edit.component";
 import { ContactInformationsEditComponent } from "../contact-informations-edit/contact-informations-edit.component";
 import { DependentsListEditComponent } from "../dependents-list-edit/dependents-list-edit.component";
+import { UserFormController } from './user.form-controller';
 
 @Component({
   selector: 'app-user-infomations-container',
@@ -17,14 +18,20 @@ import { DependentsListEditComponent } from "../dependents-list-edit/dependents-
   templateUrl: './user-infomations-container.component.html',
   styleUrl: './user-infomations-container.component.css'
 })
-export class UserInfomationsContainerComponent implements OnChanges{
+export class UserInfomationsContainerComponent extends UserFormController implements OnChanges{
 
   currentTabIndex: number = 0;
 
     @Input({required: true }) isInEditMode: boolean = false;
   @Input({required: true }) userSelected: IUser = {} as IUser;
 
-    ngOnChanges(_: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges) {
       this.currentTabIndex = 0;
+
+      const HAS_USER_SELECTED = changes['userSelected'] && Object.keys(changes['userSelected'].currentValue).length > 0;
+
+      if(HAS_USER_SELECTED) {
+        this.fulfillUserForm(this.userSelected);
+      }
   }
 }
