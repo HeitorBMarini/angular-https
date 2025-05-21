@@ -22,6 +22,7 @@ import { take } from 'rxjs';
 import { CountriesList } from '../../types/countries-list';
 import { StatesService } from '../../services/states.service';
 import { StatesList } from '../../types/states-list';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-user-infomations-container',
@@ -35,6 +36,9 @@ import { StatesList } from '../../types/states-list';
     ContactInformationsEditComponent,
     DependentsListEditComponent,
   ],
+  providers: [ provideNativeDateAdapter(),
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
+   ],
   templateUrl: './user-infomations-container.component.html',
   styleUrl: './user-infomations-container.component.css',
 })
