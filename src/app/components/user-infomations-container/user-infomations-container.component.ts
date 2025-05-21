@@ -46,6 +46,7 @@ export class UserInfomationsContainerComponent
   extends UserFormController
   implements OnInit, OnChanges
 {
+
   currentTabIndex: number = 0;
 
   countriesList: CountriesList = [];
@@ -97,4 +98,8 @@ export class UserInfomationsContainerComponent
         this.countriesList = countriesList;
       });
   }
+
+  mostrarUserForm() {
+throw new Error('Method not implemented.');
+}
 }
