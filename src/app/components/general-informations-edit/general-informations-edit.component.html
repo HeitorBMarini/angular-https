@@ -40,8 +40,8 @@
           [matAutocomplete]="autoState"
           formControlName="state"
         />
-        <mat-autocomplete #autoState="matAutocomplete">
-          <mat-option *ngFor="let op of []">{{ "" }}</mat-option>
+        <mat-autocomplete #autoState="matAutocomplete" (optionSelected)="onStatesSelected($event)">
+          <mat-option *ngFor="let state of statesListFiltered" [value]="state.name">{{ state.name }}</mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
@@ -49,12 +49,12 @@
       <div class="w-full">
         <div class="text-lg">Estado Cívil:</div>
         <mat-radio-group
-          class="flex flex-col gap-1 lg:flex-row md:flex-row sm:flex-row sm:justify-between" formControlName="maritalStatus"
-
-        >
-          <mat-radio-button [value]="1">Solteiro</mat-radio-button>
-          <mat-radio-button [value]="2">Casado</mat-radio-button>
-          <mat-radio-button [value]="3">Divorciado</mat-radio-button>
+          class="flex flex-col gap-1 lg:flex-row md:flex-row sm:flex-row sm:justify-between" formControlName="maritalStatus" >
+          <mat-radio-button *ngFor="let maritalStatusObj of maritalStatusArray" 
+          [value]="maritalStatusObj.code">
+          {{maritalStatusObj.description}}
+        </mat-radio-button>
+          
         </mat-radio-group>
       </div>
 

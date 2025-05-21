@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +22,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { CountriesList } from '../../types/countries-list';
+import { StatesList } from '../../types/states-list';
+import { maritalStatusArray } from '../../utils/marital-status-description-map';
 
 @Component({
   selector: 'app-general-informations-edit',
@@ -39,22 +43,34 @@ import { CountriesList } from '../../types/countries-list';
 })
 export class GeneralInformationsEditComponent implements OnInit, OnChanges {
 
-
   countriesListFiltered: CountriesList = [];
+
+  statesListFiltered: StatesList = [];
 
   @Input({ required: true }) userForm!: FormGroup;
   @Input({ required: true }) countriesList: CountriesList = [];
+    @Input({ required: true }) statesList: StatesList = [];
+
+    @Output('onCountrySelected') onCountrySelectedEmitt = new EventEmitter<string>();
 
   ngOnInit(){
         this.watchCountryFormChangesAndFilter();
 
+        this.watchStatesFormChangesAndFilter();
   }
+ 
 
   ngOnChanges() {
-    console.log(this.userForm);
 
     this.countriesListFiltered = this.countriesList;
+    this.statesListFiltered = this.statesList;
   }
+
+  get maritalStatusArray() {
+    return maritalStatusArray;
+  } 
+
+
 
   get emailControl(): FormControl {
     return this.userForm.get('generalInformations.email') as FormControl;
@@ -64,7 +80,16 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     return this.userForm.get('generalInformations.country') as FormControl;
   }
 
+  
+  get stateControl(): FormControl {
+    return this.userForm.get('generalInformations.states') as FormControl;
+  }
+
   onCountrySelected(event: MatAutocompleteSelectedEvent) {
+this.onCountrySelectedEmitt.emit(event.option.value);
+}
+
+onStatesSelected(event: MatAutocompleteSelectedEvent) {
 console.log(event.option.value)
 }
 
@@ -75,6 +100,17 @@ console.log(event.option.value)
   private filterCountriesList(searchTerm:string){
  this.countriesListFiltered = this.countriesList.filter((country) =>
       country.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+  }
+
+  
+ private  watchStatesFormChangesAndFilter() {
+    this.stateControl.valueChanges.subscribe(this.filterStatesList.bind(this));
+  }
+
+  private filterStatesList(searchTerm:string){
+ this.statesListFiltered = this.statesList.filter((state) =>
+      state.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
     );
   }
 }
