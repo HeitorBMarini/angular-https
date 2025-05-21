@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { CountriesList } from '../../types/countries-list';
 import { StatesList } from '../../types/states-list';
 import { maritalStatusArray } from '../../utils/marital-status-description-map';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-general-informations-edit',
@@ -36,8 +37,9 @@ import { maritalStatusArray } from '../../utils/marital-status-description-map';
     MatDatepickerModule,
     ReactiveFormsModule,
     CommonModule,
+    NgxMaskDirective,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(), provideNgxMask()],
   templateUrl: './general-informations-edit.component.html',
   styleUrl: './general-informations-edit.component.css',
 })
